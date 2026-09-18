@@ -77,7 +77,12 @@ The moving-average analysis is designed to:
 ```DAX
 14-Day Moving Avg =
 AVERAGEX(
-    DATEADD('Date'[Date], -14, DAY),
+    DATESINPERIOD(
+        '2021 Sales'[order_date],
+        MAX('2021 Sales'[order_date]),
+        -14,
+        DAY
+    ),
     [Total Sales]
 )
 ```
